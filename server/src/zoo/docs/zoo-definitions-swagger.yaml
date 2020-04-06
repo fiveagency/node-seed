@@ -1,0 +1,59 @@
+definitions:
+  ZooReference:
+    type: object
+    required:
+    - type
+    - id
+    properties:
+      type:
+        type: string
+        enum: [ zoos ]
+      id:
+        type: string
+  Zoo:
+    allOf:
+      - $ref: '#/definitions/ZooReference'
+      - type: object
+        properties:
+          attributes:
+            type: object
+            properties:
+              name:
+                type: string
+          relationships:
+            type: object
+            properties:
+              employees:
+                $ref: '#/definitions/HumanCollectionRelationship'
+  ZooJsonApiDocument:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: '#/definitions/Zoo'
+  ZooCollectionJsonApiDocument:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Zoo'
+  ZooSingleRelationship:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: '#/definitions/ZooReference'
+  ZooCollectionRelationship:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/ZooReference'

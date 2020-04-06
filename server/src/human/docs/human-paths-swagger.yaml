@@ -1,0 +1,81 @@
+parameters:
+  humanId:
+    name: humanId
+    in: path
+    description: human identifier
+    required: true
+    type: string
+
+paths:
+  /v1/humans/all:
+    get:
+      summary: Returns all humans
+      tags:
+      - Human
+      responses:
+        '200':
+          description: human array
+          schema:
+            $ref: '#/definitions/HumanCollectionJsonApiDocument'
+
+  /v1/humans:
+    get:
+      summary: Returns humans according to provided sort, filter and page options
+      tags:
+      - Human
+      responses:
+        '200':
+          description: human array
+          schema:
+            $ref: '#/definitions/HumanCollectionJsonApiDocument'
+    post:
+      tags:
+      - Human
+      summary: Creates new human
+      parameters:
+      - name: humanData
+        in: body
+        schema:
+          $ref: '#/definitions/HumanJsonApiDocument'
+      responses:
+        '201':
+          description: created human object
+          schema:
+            $ref: '#/definitions/HumanJsonApiDocument'            
+
+  /v1/humans/{humanId}:
+    get:
+      summary: Returns human for given id
+      tags:
+      - Human
+      parameters:
+      - $ref: '#/parameters/humanId'
+      responses:
+        '200':
+          description: human object
+          schema:
+            $ref: '#/definitions/HumanJsonApiDocument'
+    patch:
+      tags:
+      - Human
+      summary: Updates human
+      parameters:
+      - $ref: '#/parameters/humanId'
+      - name: humanData
+        in: body
+        schema:
+          $ref: '#/definitions/HumanJsonApiDocument'
+      responses:
+        '200':
+          description: updated human object
+          schema:
+            $ref: '#/definitions/HumanJsonApiDocument'
+    delete:
+      tags:
+      - Human
+      summary: Deletes human
+      parameters:
+      - $ref: '#/parameters/humanId'
+      responses:
+        '204':
+          description: no content

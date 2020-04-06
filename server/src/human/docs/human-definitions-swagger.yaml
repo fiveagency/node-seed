@@ -1,0 +1,59 @@
+definitions:
+  HumanReference:
+    type: object
+    required:
+    - type
+    - id
+    properties:
+      type:
+        type: string
+        enum: [ humans ]
+      id:
+        type: string
+  Human:
+    allOf:
+      - $ref: '#/definitions/HumanReference'
+      - type: object
+        properties:
+          attributes:
+            type: object
+            properties:
+              name:
+                type: string
+          relationships:
+            type: object
+            properties:
+              zoo:
+                $ref: '#/definitions/ZooSingleRelationship'
+  HumanJsonApiDocument:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: '#/definitions/Human'
+  HumanCollectionJsonApiDocument:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Human'
+  HumanSingleRelationship:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: '#/definitions/HumanReference'
+  HumanCollectionRelationship:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/HumanReference'

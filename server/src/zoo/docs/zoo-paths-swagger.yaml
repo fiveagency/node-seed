@@ -1,0 +1,81 @@
+parameters:
+  zooId:
+    name: zooId
+    in: path
+    description: zoo identifier
+    required: true
+    type: string
+
+paths:
+  /v1/zoos/all:
+    get:
+      summary: Returns all zoos
+      tags:
+      - Zoo
+      responses:
+        '200':
+          description: zoo array
+          schema:
+            $ref: '#/definitions/ZooCollectionJsonApiDocument'
+
+  /v1/zoos:
+    get:
+      summary: Returns zoos according to provided sort, filter and page options
+      tags:
+      - Zoo
+      responses:
+        '200':
+          description: zoo array
+          schema:
+            $ref: '#/definitions/ZooCollectionJsonApiDocument'
+    post:
+      tags:
+      - Zoo
+      summary: Creates new zoo
+      parameters:
+      - name: zooData
+        in: body
+        schema:
+          $ref: '#/definitions/ZooJsonApiDocument'
+      responses:
+        '201':
+          description: created zoo object
+          schema:
+            $ref: '#/definitions/ZooJsonApiDocument'            
+
+  /v1/zoos/{zooId}:
+    get:
+      summary: Returns zoo for given id
+      tags:
+      - Zoo
+      parameters:
+      - $ref: '#/parameters/zooId'
+      responses:
+        '200':
+          description: zoo object
+          schema:
+            $ref: '#/definitions/ZooJsonApiDocument'
+    patch:
+      tags:
+      - Zoo
+      summary: Updates zoo
+      parameters:
+      - $ref: '#/parameters/zooId'
+      - name: zooData
+        in: body
+        schema:
+          $ref: '#/definitions/ZooJsonApiDocument'
+      responses:
+        '200':
+          description: updated zoo object
+          schema:
+            $ref: '#/definitions/ZooJsonApiDocument'
+    delete:
+      tags:
+      - Zoo
+      summary: Deletes zoo
+      parameters:
+      - $ref: '#/parameters/zooId'
+      responses:
+        '204':
+          description: no content
