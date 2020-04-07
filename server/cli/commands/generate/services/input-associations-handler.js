@@ -67,9 +67,9 @@ export async function getAssociations() {
       relatedModelGetter.model = relatedModelGetter.model + ', () => ' + throughModel.through;
     }
 
-    let alternativeKey;
+    let alternativeKeyExpression;
     if (associationType.type === 'BelongsTo') {
-      alternativeKey = `alternativeKey: ${associationName.name}Id`;
+      alternativeKeyExpression = `alternativeKey: "${associationName.name}Id",`;
       const model = relatedModelGetter.model;
       foreignKeys.push({
         name: associationName.name + 'Id',
@@ -87,7 +87,7 @@ export async function getAssociations() {
       ioType,
       relatedModuleName: _.lowerCase(relatedModelGetter.model),
       swaggerTypeRelationship,
-      alternativeKey,
+      alternativeKeyExpression,
     });
   }
   return { associations, foreignKeys };

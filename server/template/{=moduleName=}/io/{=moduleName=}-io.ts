@@ -12,7 +12,7 @@ jsonapi.registerType({=modelName.constantCase=}_TYPE, {
     {=#associations=}
     {=name=}: {
       type: {=ioType=},
-      alternativeKey: '{=alternativeKey=}',
+      {=alternativeKeyExpression=}
     },
     {=/associations=}
   },

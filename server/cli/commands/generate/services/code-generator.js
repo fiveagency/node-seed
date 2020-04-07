@@ -87,17 +87,23 @@ export async function generateModule(context) {
 
   if (_.size(context.foreignKeys) > 0) {
     console.warn('WARNING Foreign key references currently not generated. Add manually. Example:\n');
-    console.warn(`zooId: {
-      type: Sequelize.INTEGER,
-        references: {
-          model: 'Zoos',
-          key: 'id',
-        },
-      },`);
+    console.warn(
+      `zooId: {
+  type: Sequelize.INTEGER,
+  references: {
+    model: 'Zoos',
+    key: 'id',
+  },
+  onDelete: 'cascade',
+  onUpdate: 'cascade',
+},`,
+    );
   }
 
-  let sequelizeAttributes = _.map(context.properties, (p) => `${p.name}:${p.type}`).join(',');
-  sequelizeAttributes = sequelizeAttributes + _.map(context.foreignKeys, (k) => `,${k.name}:INTEGER`).join();
+  const keyAttributes = _.map(context.foreignKeys, (k) => `${k.name}:INTEGER`);
+  const propertyAttributes = _.map(context.properties, (p) => `${p.name}:${p.type}`);
+  const attributes = [...propertyAttributes, ...keyAttributes];
+  const sequelizeAttributes = _.join(attributes, ',');
 
   const sequelizeCommand = `${path.join(__dirname, '../../../../node_modules/.bin/sequelize ')} model:generate --name ${
     context.modelName.upperCase

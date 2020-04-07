@@ -21,7 +21,6 @@ export default [
         relatedModuleName: 'human',
         jsType: 'Human[]',
         ioType: 'HUMAN_TYPE',
-        alternativeKey: undefined,
       },
     ],
   },
@@ -45,7 +44,7 @@ export default [
         relatedModuleName: 'zoo',
         jsType: 'Zoo[]',
         ioType: 'ZOO_TYPE',
-        alternativeKey: 'zooId',
+        alternativeKeyExpression: `alternativeKey: 'zooId',`,
       },
     ],
     // not needed if generating only docs
