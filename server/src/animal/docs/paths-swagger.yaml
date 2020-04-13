@@ -1,0 +1,83 @@
+parameters:
+  animalId:
+    name: animalId
+    in: path
+    description: animal identifier
+    required: true
+    type: string
+
+paths:
+  /v1/animals/all:
+    get:
+      summary: Returns all animals
+      tags:
+      - Animal
+      responses:
+        '200':
+          description: animal array
+          schema:
+            $ref: '#/definitions/AnimalCollectionJsonApiDocument'
+
+
+  /v1/animals:
+    get:
+      summary: Returns animals according to provided sort, filter and page options
+      tags:
+      - Animal
+      responses:
+        '200':
+          description: animal array
+          schema:
+            $ref: '#/definitions/AnimalCollectionJsonApiDocument'
+    post:
+      tags:
+      - Animal
+      summary: Creates new animal
+      parameters:
+      - name: animalData
+        in: body
+        schema:
+          $ref: '#/definitions/AnimalJsonApiDocument'
+      responses:
+        '201':
+          description: created animal object
+          schema:
+            $ref: '#/definitions/AnimalJsonApiDocument'            
+
+
+  /v1/animals/{animalId}:
+    get:
+      summary: Returns animal for given id
+      tags:
+      - Animal
+      parameters:
+      - $ref: '#/parameters/animalId'
+      responses:
+        '200':
+          description: animal object
+          schema:
+            $ref: '#/definitions/AnimalJsonApiDocument'
+    patch:
+      tags:
+      - Animal
+      summary: Updates animal
+      parameters:
+      - $ref: '#/parameters/animalId'
+      - name: animalData
+        in: body
+        schema:
+          $ref: '#/definitions/AnimalJsonApiDocument'
+      responses:
+        '200':
+          description: updated animal object
+          schema:
+            $ref: '#/definitions/AnimalJsonApiDocument'
+    delete:
+      tags:
+      - Animal
+      summary: Deletes animal
+      parameters:
+      - $ref: '#/parameters/animalId'
+      responses:
+        '204':
+          description: no content

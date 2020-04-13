@@ -2,6 +2,7 @@ import express from 'express';
 import { authenticate } from '../core/auth';
 import { zooRouter } from './zoo';
 import { humanRouter } from './human';
+import { animalRouter } from './animal';
 
 /**
  Comment out these imports if you want to use them
@@ -19,6 +20,7 @@ const mockTokenProvider = {
 router.use(authenticate(mockTokenProvider));
 router.use('/v1/zoos', zooRouter);
 router.use('/v1/humans', humanRouter);
+router.use('/v1/animals', animalRouter);
 
 // Public routes
 // Example: router.use('/v1/users/', userRouter);

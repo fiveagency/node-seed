@@ -1,0 +1,54 @@
+definitions:
+  AnimalReference:
+    type: object
+    required:
+    - type
+    - id
+    properties:
+      type:
+        type: string
+        enum: [ animals ]
+      id:
+        type: string
+  Animal:
+    allOf:
+      - $ref: '#/definitions/AnimalReference'
+      - type: object
+        properties:
+          attributes:
+            type: object
+            properties:
+              name:
+                type: string
+  AnimalJsonApiDocument:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: '#/definitions/Animal'
+  AnimalCollectionJsonApiDocument:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Animal'
+  AnimalSingleRelationship:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: '#/definitions/AnimalReference'
+  AnimalCollectionRelationship:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/AnimalReference'
