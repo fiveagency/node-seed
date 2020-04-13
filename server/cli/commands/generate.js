@@ -2,8 +2,8 @@ import bluebird from 'bluebird';
 import { generateModule } from './generate/services/code-generator';
 import { getProperties } from './generate/services/input-properties-handler';
 import { getAssociations } from './generate/services/input-associations-handler';
-export const command = 'generate <modelName>';
 
+export const command = 'generate';
 export const desc = 'node-seed-project scaffolding';
 
 async function generateModuleWrapper({ onlyDocs, modelName, properties, associations, foreignKeys, predefined }) {
@@ -48,5 +48,24 @@ export async function handler(args) {
 }
 
 export function builder(yargs) {
-  // return yargs.commandDir('generate');
+  return yargs
+    .commandDir('generate')
+    .option('only-docs', {
+      alias: 'd',
+      type: 'boolean',
+      description: 'Generate only docs',
+      default: false,
+    })
+    .option('modelName', {
+      alias: 'm',
+      type: 'string',
+      description: 'Name of model to generate',
+      default: undefined,
+    })
+    .option('file', {
+      alias: 'f',
+      type: 'string',
+      description: 'Generate from file with multiple definitions',
+      default: undefined,
+    });
 }

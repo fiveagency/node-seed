@@ -3,44 +3,64 @@
 export default [
   // User Signup Action
   {
-    name: 'user-signup-action',
+    name: 'UserSignupAction',
     properties: [
       {
-        email: 'email',
+        name: 'email',
         type: 'STRING',
       },
       {
-        password: 'password',
+        name: 'password',
         type: 'STRING',
       },
     ],
   },
   // User
   {
-    name: 'user',
+    name: 'User',
     properties: [
       {
-        email: 'email',
+        name: 'email',
         type: 'STRING',
       },
     ],
     associations: [
       {
         name: 'profiles',
-        swaggerTypeRelationship: 'ProfileSingleRelationship',
+        swaggerTypeRelationship: 'UserProfileSingleRelationship',
+      },
+    ],
+  },
+  // Token create
+  {
+    name: 'AuthToken',
+    properties: [
+      {
+        name: 'tokenType',
+        type: 'STRING',
+      },
+      {
+        name: 'subjectId',
+        type: 'STRING',
+      },
+    ],
+    associations: [
+      {
+        name: 'user',
+        swaggerTypeRelationship: 'UserSingleRelationship',
       },
     ],
   },
   // Profile
   {
-    name: 'profile',
+    name: 'UserProfile',
     properties: [
       {
-        firstName: 'firstName',
+        name: 'firstName',
         type: 'STRING',
       },
       {
-        lastName: 'lastName',
+        name: 'lastName',
         type: 'STRING',
       },
     ],

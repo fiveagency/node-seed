@@ -4,16 +4,6 @@ require('yargonaut').helpStyle('green.underline').errorsStyle('red.bold');
 
 const cli = yargs
   .usage('Usage: console [command] [-h]')
-  .option('only-docs', {
-    alias: 'd',
-    type: 'boolean',
-    description: 'Generate only docs',
-  })
-  .option('file', {
-    alias: 'f',
-    type: 'string',
-    description: 'Generate from file with multiple definitions',
-  })
   .commandDir('commands')
   .strict()
   .help()

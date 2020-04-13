@@ -55,7 +55,9 @@ export async function generateModule(context) {
     upperCase: changeCase.upperCaseFirst(context.modelName),
     camelCase: changeCase.camelCase(context.modelName),
     paramCase: changeCase.paramCase(context.modelName),
+    paramCase: changeCase.paramCase(context.modelName),
     pascalCase: changeCase.pascalCase(context.modelName),
+    noCaseNoWhitespace: changeCase.noCase(context.modelName).replace(/ /g, ''),
     noCase: changeCase.noCase(context.modelName),
     noCasePlural: pluralize.plural(changeCase.noCase(context.modelName)),
     pascalCasePlural: pluralize.plural(changeCase.pascalCase(context.modelName)),
@@ -110,7 +112,9 @@ export async function generateModule(context) {
   } --attributes ${sequelizeAttributes}`;
   execSync(sequelizeCommand);
 
-  const modelPath = `${path.join(__dirname, '../../../../src/sequelize/models/')}${context.modelName.noCase}.js`;
+  const modelPath = `${path.join(__dirname, '../../../../src/sequelize/models/')}${
+    context.modelName.noCaseNoWhitespace
+  }.js`;
 
   // deleting sequelize model file because it is created by our own scaffolding tool
   fs.unlinkSync(modelPath);

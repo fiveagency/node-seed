@@ -31,20 +31,20 @@ You are therefore still required to locally install:
 
 ### Code scaffolding via CLI dialog
 
-- `npm run scaffold -- generate ModelNamePascalCase`
+- `npm run scaffold -- generate -m ModelNamePascalCase`
 
 Follow a wizard to add properties with associated types. It will generate files for a new model/module. Mirrors structure of template found in `/template`
 It is mostly a 1:1 mirror, but some things are a bit smarter - like generating a Sequelize migration
 
 ### Code scaffolding via file
 
-- `npm run scaffold -- generate ModelNamePascalCase --file <path-to-schema-js>`
+- `npm run scaffold -- generate -m ModelNamePascalCase --file <path-to-schema-js>`
 
 Build a file containing multiple schemas as shown in `/architecture/schema-example.js`. It will do the same as above but you can generate a lot of modules at once.
 
 ### API design / DB design bootstrapping
 
-- `npm run scaffold -- generate ModelNamePascalCase --file <path-to-schema-js> --only-docs`
+- `npm run scaffold -- generate -m ModelNamePascalCase --file <path-to-schema-js> --only-docs`
 
 Do the same as above, but only generate docs, using schema as shown in `/architecture/schema-example.js`.
 
