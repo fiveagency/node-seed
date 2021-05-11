@@ -62,7 +62,7 @@
     "hellosign-sdk": "^1.3.1",
     "inquirer": "^5.0.0",
     "json-api-serializer": "^1.12.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "mandrill-api": "^1.0.45",
     "newrelic": "^6.4.0",
     "node-schedule": "^1.3.2",
