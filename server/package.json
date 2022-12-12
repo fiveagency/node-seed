@@ -54,7 +54,7 @@
     "cors": "^2.8.4",
     "dotenv": "^8.2.0",
     "env-cmd": "^7.0.0",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "extendify": "^1.0.0",
     "firebase-admin": "^8.10.0",
     "glob": "^7.1.2",
